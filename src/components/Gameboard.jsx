@@ -47,14 +47,6 @@ function Gameboard() {
       default:
         return " ";
     }
-    // switch (cell) {
-    //   case 0:
-    //     return "O";
-    //   case 1:
-    //     return "X";
-    //   default:
-    //     return "_";
-    // }
   };
 
   return (
