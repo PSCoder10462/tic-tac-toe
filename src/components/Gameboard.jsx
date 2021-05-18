@@ -50,13 +50,15 @@ function Gameboard() {
   };
 
   return (
-    <div className="gameboard grid items-center min-h-screen">
+    <div className="gameboard flex flex-col space-y-10 justify-center items-center min-h-screen">
       <div className="grid grid-rows-3 grid-cols-3 w-60 mx-auto">
         {rows?.map((col, indrow) => (
           <React.Fragment key={indrow}>
             {col?.map((cell, indcol) => (
               <div
-                className="grid items-center border min-h-[4rem] text-5xl w-full py-1 px-2 text-center cursor-pointer hover:bg-gray-100"
+                className={`grid items-center border min-h-[4rem] text-5xl w-full py-1 px-2 text-center hover:bg-gray-100 hover:bg-opacity-50 ${
+                  cell === -1 ? "cursor-pointer" : "cursor-not-allowed"
+                }`}
                 onClick={() => handleResponse(indrow, indcol)}
                 key={`${indrow}${indcol}`}
               >
@@ -66,8 +68,20 @@ function Gameboard() {
           </React.Fragment>
         ))}
       </div>
-      <button onClick={handleReset}>Reset</button>
-      <button onClick={handleUndo}>Undo</button>
+      <div className="flex w-40 justify-between mx-auto">
+        <button
+          className="border px-2 py-1 rounded-md focus:outline-none"
+          onClick={handleReset}
+        >
+          Reset
+        </button>
+        <button
+          className="border px-2 py-1 rounded-md focus:outline-none"
+          onClick={handleUndo}
+        >
+          Undo
+        </button>
+      </div>
     </div>
   );
 }
