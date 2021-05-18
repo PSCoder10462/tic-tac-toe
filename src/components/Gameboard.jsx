@@ -51,12 +51,12 @@ function Gameboard() {
 
   return (
     <div className="gameboard flex flex-col space-y-10 justify-center items-center min-h-screen">
-      <div className="grid grid-rows-3 grid-cols-3 w-60 mx-auto">
+      <div className="grid grid-rows-3 grid-cols-3 w-96 mx-auto">
         {rows?.map((col, indrow) => (
           <React.Fragment key={indrow}>
             {col?.map((cell, indcol) => (
               <div
-                className={`grid items-center border min-h-[4rem] text-5xl w-full py-1 px-2 text-center hover:bg-gray-100 hover:bg-opacity-50 ${
+                className={`grid items-center border min-h-[6rem] text-7xl w-full py-1 px-2 text-center hover:bg-gray-100 hover:bg-opacity-50 ${
                   cell === -1 ? "cursor-pointer" : "cursor-not-allowed"
                 }`}
                 onClick={() => handleResponse(indrow, indcol)}
