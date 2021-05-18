@@ -19,7 +19,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@layer base {
+  .button {
+    @apply text-center p-2 rounded-md text-white cursor-pointer;
+  }
+  .login__input {
+    @apply text-white p-2 m-3 border rounded-md focus:outline-none bg-[#000] bg-opacity-30;
+  }
 }

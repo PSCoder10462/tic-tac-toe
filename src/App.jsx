@@ -18,9 +18,11 @@ function App() {
     auth.onAuthStateChanged((user) => {
       if (user) {
         // dispatch login
-        console.log(user);
+
+        dispatch(login(user?.email));
       } else {
         // dispatch logout
+        dispatch(logout());
       }
     });
   }, []);
@@ -28,13 +30,13 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <div class="container-fluid">
-          <div class="background">
-            <div class="cube"></div>
-            <div class="cube"></div>
-            <div class="cube"></div>
-            <div class="cube"></div>
-            <div class="cube"></div>
+        <div className="container-fluid">
+          <div className="background">
+            <div className="cube"></div>
+            <div className="cube"></div>
+            <div className="cube"></div>
+            <div className="cube"></div>
+            <div className="cube"></div>
 
             <Switch>
               <Route path="/login">
