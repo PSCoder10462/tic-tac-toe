@@ -26,4 +26,10 @@ body {
   .login__input {
     @apply text-white p-2 m-3 border rounded-md focus:outline-none bg-[#000] bg-opacity-30;
   }
+  .home-card {
+    @apply flex items-center w-full border rounded bg-no-repeat bg-right hover:shadow-2xl;
+  }
+  .home-card > h1 {
+    @apply text-gray-700 text-5xl pl-10;
+  }
 }

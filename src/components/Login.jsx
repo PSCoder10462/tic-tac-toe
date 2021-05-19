@@ -61,7 +61,7 @@ function Login() {
 
   return (
     <div className="login grid place-items-center min-h-screen">
-      <div className="flex flex-col items-stretch w-80 space-y-4">
+      <div className="box-content p-10 rounded-3xl bg-black bg-opacity-30 flex flex-col items-stretch w-80 space-y-4">
         <form className="flex flex-col space-y-3">
           <input
             type="email"
