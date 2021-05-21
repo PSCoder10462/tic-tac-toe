@@ -42,6 +42,9 @@ function App() {
               <Route path="/login">
                 <Login />
               </Route>
+              <Route path="/local/play">
+                <Gameboard />
+              </Route>
               <Route path="/play">
                 <Gameboard />
               </Route>

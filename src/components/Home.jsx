@@ -34,7 +34,7 @@ function Home() {
           <h1>Online</h1>
         </Link>
         <Link
-          to="/play"
+          to="/local/play"
           className="home-card bg-red-500"
           style={{ backgroundImage: `url(${local})`, backgroundSize: "250px" }}
         >
