@@ -1,5 +1,3 @@
-authentication
-
 win lose data
 
 play online

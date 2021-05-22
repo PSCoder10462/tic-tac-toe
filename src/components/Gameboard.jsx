@@ -10,36 +10,41 @@ function Gameboard() {
   const [cross, setCross] = useState(true);
   const [comp, setComp] = useState(false);
   const [winner, setWinner] = useState("");
+  const [totalGames, setTotalGames] = useState(0);
+  const [xwin, setXwin] = useState(0);
+  const [ties, setTies] = useState(0);
 
-  const getPlayer = (val) => (val === 0 ? "0" : "X");
-
+  const getPlayer = (val) => {
+    setTotalGames(totalGames + 1);
+    if (val === 0) {
+      return "Winner : O";
+    } else {
+      setXwin(xwin + 1);
+      return "Winner : X";
+    }
+  };
   const complete = () => {
     // tie check
 
     // rows
     for (let i = 0; i < 3; i++) {
       // checking for ith row
-      // if (rows[i][0] === rows[i][1] && rows[i][1] === rows[i][2]) {
       if (
         rows[i][0] + rows[i][1] + rows[i][2] === 0 ||
         rows[i][0] + rows[i][1] + rows[i][2] === 3
       ) {
-        // if (rows[i][0] !== -1) {
         setComp(true);
         setWinner(getPlayer(rows[i][0]));
         return;
-        // }
       }
       // checking for ith column
       if (
         rows[0][i] + rows[1][i] + rows[2][i] === 0 ||
         rows[0][i] + rows[1][i] + rows[2][i] === 3
       ) {
-        // if (rows[0][i] !== -1) {
         setComp(true);
         setWinner(getPlayer(rows[0][i]));
         return;
-        // }
       }
     }
     // checking \ diognal
@@ -47,22 +52,18 @@ function Gameboard() {
       rows[0][0] + rows[1][1] + rows[2][2] === 0 ||
       rows[0][0] + rows[1][1] + rows[2][2] === 3
     ) {
-      // if (rows[0][0] !== -1) {
       setComp(true);
       setWinner(getPlayer(rows[0][0]));
       return;
-      // }
     }
     // checking / diognal
     if (
       rows[0][2] + rows[1][1] + rows[2][0] === 0 ||
       rows[0][2] + rows[1][1] + rows[2][0] === 3
     ) {
-      // if (rows[0][2] !== -1) {
       setComp(true);
       setWinner(getPlayer(rows[0][2]));
       return;
-      // }
     }
 
     // check tie
@@ -75,7 +76,9 @@ function Gameboard() {
         }
 
     if (tie) {
-      setWinner("None");
+      setTotalGames(totalGames + 1);
+      setTies(ties + 1);
+      setWinner("Game is a TIE");
       setComp(true);
       return;
     }
@@ -126,9 +129,17 @@ function Gameboard() {
 
   return (
     <div className="gameboard flex flex-col space-y-10 justify-center items-center min-h-screen">
-      {/* <div className="relative flex justify-center pb-10 w-full h-0"> */}
-      {comp && <h1 className="absolute text-5xl">Winner is {winner}</h1>}
-      {/* </div> */}
+      {comp && (
+        <div className="absolute w-full h-full bg-gray-400 bg-opacity-70 grid place-items-center">
+          <h1
+            className={`absolute text-9xl ${
+              winner.slice(-1) === "X" ? "text-red-500" : "text-green-500"
+            }`}
+          >
+            {winner}
+          </h1>
+        </div>
+      )}
       <div className="grid grid-rows-3 grid-cols-3 w-96 mx-auto">
         {rows?.map((col, indrow) => (
           <React.Fragment key={indrow}>
@@ -153,7 +164,7 @@ function Gameboard() {
           className="border px-2 py-1 rounded-md focus:outline-none"
           onClick={handleReset}
         >
-          Reset
+          {comp ? "New Game" : "Reset"}
         </button>
         <button
           className="border px-2 py-1 rounded-md focus:outline-none"
@@ -162,6 +173,40 @@ function Gameboard() {
         >
           Undo
         </button>
+      </div>
+      <div className="flex flex-col text-2xl">
+        <p className="text-center">
+          <span className="font-bold">Total Games: </span>
+          {totalGames}
+        </p>
+        <div className="grid grid-cols-2 space-x-3">
+          <div className="flex flex-col">
+            <span className="font-bold"> Player X </span>
+            <p>
+              <span className="font-bold"> Won: </span>
+              {xwin}
+            </p>
+            <p>
+              <span className="font-bold"> Lost: </span>
+              {totalGames - (xwin + ties)}
+            </p>
+          </div>
+          <div className="flex flex-col">
+            <span className="font-bold"> Player O </span>
+            <p>
+              <span className="font-bold"> Won: </span>
+              {totalGames - (xwin + ties)}
+            </p>
+            <p>
+              <span className="font-bold"> Lost: </span>
+              {xwin}
+            </p>
+          </div>
+        </div>
+        <p className="text-center">
+          <span className="font-bold">Tied: </span>
+          {ties}
+        </p>
       </div>
     </div>
   );

@@ -16,6 +16,7 @@
   overflow: hidden;
   padding: 0;
   margin: 0px;
+  z-index: 0;
 }
 .cube {
   position: absolute;
@@ -27,6 +28,7 @@
   transform-origin: top left;
   transform: scale(0) rotate(0deg) translate(-50%, -50%);
   animation: cube 12s ease-in forwards infinite;
+  z-index: -1;
 }
 .cube:nth-child(2n) {
   border-color: #fff;
